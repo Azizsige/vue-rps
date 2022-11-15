@@ -9,7 +9,7 @@
           <div
             class="flip-card-front border-primary border-[7px] py-5 bg-white flex justify-center items-center"
           >
-            <h2 class="text-xl">{{ name }}</h2>
+            <h2 class="text-xl">Click Me!</h2>
           </div>
           <div
             class="flip-card-back border-primary border-[7px] py-5"

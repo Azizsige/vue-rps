@@ -1,23 +1,33 @@
 <template>
-  <!-- <div
-    class="w-[150px] hover:cursor-pointer mt-10 h-[150px] mx-auto bg-white rounded-full flex justify-center items-center border-primary border-[7px]"
-  >
-    <h2 class="text-5xl">?</h2>
-  </div> -->
   <div class="flip-card mx-auto w-[200px] h-[200px] hover:cursor-pointer">
-    <div class="flip-card-inner">
+    <div class="flip-card-inner" :class="isClick ? 'flip' : ''">
       <div
         class="flip-card-front py-5 bg-white flex justify-center items-center"
       >
         <h2 class="text-5xl">?</h2>
       </div>
-      <div class="flip-card-back py-5"></div>
+      <div
+        class="flip-card-back py-5"
+        :style="{
+          backgroundImage: `url(./src/assets/img/${name}.jpg)`,
+        }"
+      ></div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "Enemy",
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    isClick: {
+      type: Boolean,
+      required: false,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -38,7 +48,7 @@ export default {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+.flip-card-inner.flip {
   transform: rotateY(180deg);
 }
 
@@ -55,7 +65,7 @@ export default {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-back {
-  background-image: url("./../assets/img/papper.jpg");
+  /* background-image: url("./../assets/img/papper.jpg"); */
   background-size: cover;
   background-position: 40% 50%;
 }
