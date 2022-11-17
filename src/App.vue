@@ -1,9 +1,12 @@
 <template lang="">
   <div class="wrapper text-center h-screen flex flex-col justify-evenly">
+    <Score :playerScore="playerScore" :computerScore="computerScore" />
     <h1 class="text-3xl xl:text-5xl text-primary">Rock Papper Scissors</h1>
     <Enemy :isClick="isClick" :name="enemyChoose" />
-    <div v-if="results" class="container">
-      <h2 class="text-4xl xl:text-7xl text-primary mt-10">{{ results }}</h2>
+    <div v-if="results" class="container mx-auto">
+      <h2 class="text-4xl xl:text-7xl text-primary mt-10">
+        {{ results }}
+      </h2>
       <!-- <h2 class="text-4xl xl:text-7xl text-primary mt-10">Vs</h2> -->
       <button
         @click="refresh"
@@ -13,7 +16,7 @@
         Play Again!
       </button>
     </div>
-    <div v-else class="container">
+    <div v-else class="container mx-auto">
       <h2 class="text-4xl xl:text-7xl text-primary mt-10">Vs</h2>
     </div>
     <div class="wrapper flex justify-center">
@@ -28,10 +31,12 @@
 <script>
 import Enemy from "./components/Enemy.vue";
 import Player from "./components/Player.vue";
+import Score from "./components/Score.vue";
 export default {
   components: {
     Enemy,
     Player,
+    Score,
   },
   data() {
     return {
@@ -53,6 +58,8 @@ export default {
       isClick: false,
       playerChoose: "",
       enemyChoose: "",
+      playerScore: 0,
+      computerScore: 0,
       results: "",
     };
   },
@@ -79,13 +86,17 @@ export default {
         (player == "scissor" && computer == "papper")
       ) {
         this.results = "You Win!";
-        console.log(this.results);
+        this.playerScore = this.playerScore + 1;
+        this.playerStorage();
+        console.log(this.playerChoose);
       } else if (
         (player == "scissor" && computer == "rock") ||
         (player == "rock" && computer == "papper") ||
         (player == "papper" && computer == "scissor")
       ) {
         this.results = "You Lose!";
+        this.computerScore = this.computerScore + 1;
+        this.computerStorage();
         console.log(this.results);
       } else if (player == computer) {
         this.results = "Its Draw!";
@@ -96,10 +107,32 @@ export default {
     refresh() {
       location.reload();
     },
+
+    playerStorage() {
+      const dataPlayer = JSON.stringify(this.playerScore);
+      localStorage.setItem("playerScore", dataPlayer);
+    },
+    computerStorage() {
+      const dataComputer = JSON.stringify(this.computerScore);
+      localStorage.setItem("computerScore", dataComputer);
+    },
   },
   mounted() {
     this.random();
-    console.log(this.results);
+    if (
+      localStorage.getItem("playerScore") &&
+      localStorage.getItem("computerScore")
+    ) {
+      try {
+        this.playerScore = JSON.parse(localStorage.getItem("playerScore"));
+        this.computerScore = JSON.parse(localStorage.getItem("computerScore"));
+      } catch (e) {
+        localStorage.removeItem("playerScore");
+        localStorage.removeItem("computerScore");
+      }
+    }
+    // console.log(this.results);
+    // console.log(this.playerScore, this.computerScore);
     // this.rule(this.playerChoose, this.enemyChoose);
   },
 };

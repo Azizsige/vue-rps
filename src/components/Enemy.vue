@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flip-card mx-auto w-[90px] h-[90px] xl:w-[200px] xl:h-[200px]] hover:cursor-pointer"
-  >
+  <div class="flip-card mx-auto w-[90px] h-[90px] xl:w-[200px] xl:h-[200px]">
     <div class="flip-card-inner" :class="isClick ? 'flip' : ''">
       <div
         class="flip-card-front py-5 bg-white flex justify-center items-center"
