@@ -1,15 +1,15 @@
 <template>
   <div class="wrapper flex justify-center">
-    <div class="wrapper-container flex w-[18rem] justify-evenly">
+    <div class="wrapper-container flex w-full xl:w-[18rem] justify-evenly">
       <div
-        class="flip-card mx-auto w-[200px] h-[200px] hover:cursor-pointer"
+        class="flip-card mx-auto w-[90px] h-[90px] xl:w-[200px] xl:h-[200px] hover:cursor-pointer"
         @click="flip"
       >
         <div class="flip-card-inner" :class="isFlip ? 'flip' : ''">
           <div
             class="flip-card-front border-primary border-[7px] py-5 bg-white flex justify-center items-center"
           >
-            <h2 class="text-xl">Click Me!</h2>
+            <h2 class="text-sm xl:text-xl">Click Me!</h2>
           </div>
           <div
             class="flip-card-back border-primary border-[7px] py-5"
@@ -48,8 +48,6 @@ export default {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: 200px;
-  height: 200px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
