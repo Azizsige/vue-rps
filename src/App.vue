@@ -2,10 +2,20 @@
   <div class="wrapper text-center h-screen flex flex-col justify-evenly">
     <h1 class="text-3xl xl:text-5xl text-primary">Rock Papper Scissors</h1>
     <Enemy :isClick="isClick" :name="enemyChoose" />
-    <h2 v-if="results == ' '" class="text-7xl text-primary mt-10">Vs</h2>
-    <h2 v-else class="text-4xl xl:text-7xl text-primary mt-10">
-      {{ results }}
-    </h2>
+    <div v-if="results" class="container">
+      <h2 class="text-4xl xl:text-7xl text-primary mt-10">{{ results }}</h2>
+      <!-- <h2 class="text-4xl xl:text-7xl text-primary mt-10">Vs</h2> -->
+      <button
+        @click="refresh"
+        class="bg-primary text-black mt-5 px-5 py-3"
+        type="button"
+      >
+        Play Again!
+      </button>
+    </div>
+    <div v-else class="container">
+      <h2 class="text-4xl xl:text-7xl text-primary mt-10">Vs</h2>
+    </div>
     <div class="wrapper flex justify-center">
       <div class="wrapper-container flex w-[18rem] justify-evenly">
         <Player @flip="flip('rock')" name="rock" />
@@ -49,7 +59,6 @@ export default {
   methods: {
     flip(name) {
       this.playerChoose = name;
-      alert(this.playerChoose);
       this.rule(this.enemyChoose, this.playerChoose);
       this.openEnemy();
     },
@@ -83,9 +92,14 @@ export default {
         console.log(this.results);
       }
     },
+
+    refresh() {
+      location.reload();
+    },
   },
   mounted() {
     this.random();
+    console.log(this.results);
     // this.rule(this.playerChoose, this.enemyChoose);
   },
 };
