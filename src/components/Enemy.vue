@@ -9,7 +9,7 @@
       <div
         class="flip-card-back py-5"
         :style="{
-          backgroundImage: `url(./src/assets/img/${name}.jpg)`,
+          backgroundImage: `url(/assets/img/${name}.jpg)`,
         }"
       ></div>
     </div>

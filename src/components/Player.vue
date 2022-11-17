@@ -13,9 +13,7 @@
           </div>
           <div
             class="flip-card-back border-primary border-[7px] py-5"
-            :style="{
-              backgroundImage: `url(./src/assets/img/${name}.jpg)`,
-            }"
+            :style="{ backgroundImage: `url(/assets/img/${name}.jpg)` }"
           ></div>
         </div>
       </div>
@@ -23,6 +21,7 @@
   </div>
 </template>
 <script>
+// import imagePath from "@/assets/img/";
 export default {
   props: {
     name: {
@@ -79,7 +78,6 @@ export default {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-back {
-  background-image: url(https://i3.wp.com/nalastminute.cz/wp-content/uploads/2019/05/Brela-Makarska-Riviera-Chorvatsko.jpg);
   background-size: cover;
   background-position: 40% 50%;
 }
