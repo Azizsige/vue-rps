@@ -1,6 +1,10 @@
 <template lang="">
   <div class="wrapper text-center h-screen flex flex-col justify-evenly">
-    <Score :playerScore="playerScore" :computerScore="computerScore" />
+    <Score
+      class="hidden xl:block"
+      :playerScore="playerScore"
+      :computerScore="computerScore"
+    />
     <h1 class="text-3xl xl:text-5xl text-primary">Rock Papper Scissors</h1>
     <Enemy :isClick="isClick" :name="enemyChoose" />
     <div v-if="results" class="container mx-auto">
