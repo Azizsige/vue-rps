@@ -1,10 +1,6 @@
 <template lang="">
   <div class="wrapper text-center h-screen flex flex-col justify-evenly">
-    <Score
-      class="hidden xl:block"
-      :playerScore="playerScore"
-      :computerScore="computerScore"
-    />
+    <Score :playerScore="playerScore" :computerScore="computerScore" />
     <h1 class="text-3xl xl:text-5xl text-primary">Rock Papper Scissors</h1>
     <Enemy :isClick="isClick" :name="enemyChoose" />
     <div v-if="results" class="container mx-auto">
@@ -33,6 +29,7 @@
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 import Enemy from "./components/Enemy.vue";
 import Player from "./components/Player.vue";
 import Score from "./components/Score.vue";
@@ -92,6 +89,7 @@ export default {
         this.results = "You Win!";
         this.playerScore = this.playerScore + 1;
         this.playerStorage();
+        this.showAlert(this.results);
         console.log(this.playerChoose);
       } else if (
         (player == "scissor" && computer == "rock") ||
@@ -101,9 +99,11 @@ export default {
         this.results = "You Lose!";
         this.computerScore = this.computerScore + 1;
         this.computerStorage();
+        this.showAlert(this.results);
         console.log(this.results);
       } else if (player == computer) {
         this.results = "Its Draw!";
+        this.showAlert(this.results);
         console.log(this.results);
       }
     },
@@ -119,6 +119,47 @@ export default {
     computerStorage() {
       const dataComputer = JSON.stringify(this.computerScore);
       localStorage.setItem("computerScore", dataComputer);
+    },
+
+    showAlert(message) {
+      // Use sweetalert2
+      if (message == "You Win!") {
+        Swal.fire({
+          title: message,
+          text: `Player : ${this.playerScore} and Computer : ${this.computerScore}`,
+          confirmButtonText: "Play Again ?",
+          allowOutsideClick: false,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      } else if (message == "You Lose!") {
+        Swal.fire({
+          title: message,
+          text: `Player : ${this.playerScore} and Computer : ${this.computerScore}`,
+          confirmButtonText: "Play Again ?",
+          allowOutsideClick: false,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      } else {
+        Swal.fire({
+          title: message,
+          text: `Player : ${this.playerScore} and Computer : ${this.computerScore}`,
+          confirmButtonText: "Play Again ?",
+          allowOutsideClick: false,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      }
     },
   },
   mounted() {
