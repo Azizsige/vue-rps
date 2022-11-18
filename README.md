@@ -1,7 +1,38 @@
-# Vue 3 + Vite
+# Rock Papper Scissor
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Dibuat menggunakan Vue js, Vite dan Tailwind Css
 
-## Recommended IDE Setup
+## Fitur :
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+1. Menampilkan Score Player dan Computer
+1. Sweer Alert
+
+## Cara Penggunaan
+
+1.  **Install Dependencies**
+
+    ```sh
+    npm install
+    ```
+
+1.  **Run App**
+
+    ```sh
+    npm run dev
+    ```
+
+1.  **Build for Production**
+
+    ```sh
+    npm run build
+    ```
+
+1.  **Preview After Production**
+
+    ```sh
+    npm run preview
+    ```
+
+### Note :
+
+###### Web ini belum 100% responsive saat di hp, jadi jika ada yang mau untuk merapikan responsive nya dengan senang hati.
